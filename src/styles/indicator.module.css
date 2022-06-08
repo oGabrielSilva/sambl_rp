@@ -1,0 +1,17 @@
+@keyframes indicator {
+  to {
+    transform: rotateZ(360deg);
+  }
+}
+
+.indicator {
+  height: 10px;
+  width: 10px;
+  border-radius: 100%;
+  border-color: var(--white) !important;
+  border: 2px solid;
+  border-top: none;
+  border-left: none;
+  color: transparent;
+  animation: indicator 0.8s infinite linear;
+}
