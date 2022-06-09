@@ -10,7 +10,7 @@ const Home: NextPage = () => {
       <Head>
         <title>Sambl - RPG App</title>
       </Head>
-      <Header />
+      <Header buttons />
       <Main />
       <Footer />
     </>

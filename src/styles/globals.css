@@ -6,6 +6,7 @@
   --white: #e5ecf4;
   --text: #808ab8;
   --black: #000000;
+  --border: #252b45;
 }
 
 * {
@@ -33,6 +34,19 @@ h3 {
   font-size: 40px;
   font-weight: 300;
   color: var(--white);
+}
+
+input {
+  transition: 0.5s ease;
+  margin: 10px 0;
+}
+
+input:focus {
+  background: var(--border) !important;
+}
+
+input::placeholder {
+  color: var(--text);
 }
 
 button {

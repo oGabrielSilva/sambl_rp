@@ -10,6 +10,7 @@ export interface ButtonProps {
   text: string
   style?: CSSProperties
   path?: string
+  func?(): void
 }
 
 export interface ContextTypes {
@@ -29,4 +30,16 @@ export interface ButtonsHeaderProps {
 export interface IndicatorProps {
   children: string
   clicked: boolean
+}
+
+export interface HeaderProps {
+  buttons?: boolean
+}
+
+export interface InputProps {
+  value: string
+  change(value: string): void
+  type: string
+  placeholder: string
+  style?: CSSProperties
 }

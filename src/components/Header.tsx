@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { CSSProperties, useCallback, useEffect, useState } from 'react'
-import type { ButtonsHeaderProps, StyleMainGroup } from '../types'
+import type { ButtonsHeaderProps, HeaderProps, StyleMainGroup } from '../types'
 import styles from '../styles/home.module.css'
 import colors from '../utils/colors'
 
@@ -29,39 +29,6 @@ const group: StyleMainGroup = {
 
 const Buttons = ({ styles: style }: ButtonsHeaderProps) => {
   const [resize, setResize] = useState<CSSProperties>({})
-
-  const handleChangeScreenWidth = useCallback(() => {
-    if (window.innerWidth <= 600) setResize({ margin: 0 })
-    else setResize({})
-  }, [])
-
-  useEffect(() => setResize((window.innerWidth <= 600 && { margin: 0 }) || {}), [])
-
-  useEffect(() => {
-    window.addEventListener('resize', handleChangeScreenWidth)
-    return () => {
-      window.removeEventListener('resize', handleChangeScreenWidth)
-    }
-  }, [handleChangeScreenWidth])
-
-  return (
-    <div style={style ?? {}}>
-      <Link href="/">
-        <a className={styles.link} style={resize}>
-          Lorem ipsun
-        </a>
-      </Link>
-      <Link href="/spbre">
-        <a className={styles.linkBtn} style={resize}>
-          Sign up
-        </a>
-      </Link>
-    </div>
-  )
-}
-
-const Header = () => {
-  const [mouseInImage, setMouseInImage] = useState(false)
   const [buttonsContainerStyle, setButtonsContainerStyle] = useState<CSSProperties>({})
 
   useEffect(
@@ -70,8 +37,9 @@ const Header = () => {
   )
 
   const handleChangeScreenWidth = useCallback(() => {
-    if (window.innerWidth <= 600) setButtonsContainerStyle({ ...group.button })
-    else setButtonsContainerStyle({})
+    const w = window.innerWidth <= 600
+    setButtonsContainerStyle((w && { ...group.button }) || {})
+    setResize((w && { margin: 0 }) || {})
   }, [])
 
   useEffect(() => {
@@ -80,6 +48,27 @@ const Header = () => {
       window.removeEventListener('resize', handleChangeScreenWidth)
     }
   }, [handleChangeScreenWidth])
+
+  useEffect(() => setResize((window.innerWidth <= 600 && { margin: 0 }) || {}), [])
+
+  return (
+    <div style={{ ...(style ?? {}), ...buttonsContainerStyle }}>
+      <Link href="/">
+        <a className={styles.link} style={resize}>
+          Lorem ipsun
+        </a>
+      </Link>
+      <Link href="/signup">
+        <a className={styles.linkBtn} style={resize}>
+          Sign up
+        </a>
+      </Link>
+    </div>
+  )
+}
+
+const Header = ({ buttons }: HeaderProps) => {
+  const [mouseInImage, setMouseInImage] = useState(false)
 
   return (
     <header className={styles.header}>
@@ -95,7 +84,7 @@ const Header = () => {
           <Image src="/atom.svg" alt="Logo" width={55} height={55} style={group.img} />
         </Link>
       </div>
-      <Buttons styles={buttonsContainerStyle} />
+      {buttons && <Buttons />}
     </header>
   )
 }

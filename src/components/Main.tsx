@@ -33,17 +33,18 @@ const Main = () => {
   return (
     <main className={styles.main}>
       <section>
-        <h1 style={titleStyle}>Bem-vindo ao Sambl - RPG Web App</h1>
+        <h1 style={titleStyle}>Welcome to Sambl - RPG Web App</h1>
       </section>
       <section>
         <p style={textStyle}>
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quae voluptatem reprehenderit
-          autem natus repellendus voluptate, nesciunt quibusdam, nemo, doloremque assumenda
-          praesentium eos odio minus cumque obcaecati cupiditate et suscipit neque?
+          Sambl is an application focused on RPG. With game rooms, possibility to find or share
+          lores and characters, spells, alchemy or powers. Everything related to fictional worlds
+          can be shared and searched for in Sambl. Create rooms, be the master and manage even the
+          backpacks of the characters.
         </p>
       </section>
       <section>
-        <Button text="Get Started" />
+        <Button path="/signin" text="Get Started" />
       </section>
     </main>
   )
