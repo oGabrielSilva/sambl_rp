@@ -3,6 +3,7 @@ import type { CSSProperties } from 'react'
 export interface StyleMainGroup {
   logo: CSSProperties
   img: CSSProperties
+  button: CSSProperties
 }
 
 export interface ButtonProps {

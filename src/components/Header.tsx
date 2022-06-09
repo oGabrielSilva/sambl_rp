@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import { CSSProperties, useEffect, useState } from 'react'
+import { CSSProperties, useCallback, useEffect, useState } from 'react'
 import type { ButtonsHeaderProps, StyleMainGroup } from '../types'
 import styles from '../styles/home.module.css'
 import colors from '../utils/colors'
@@ -16,12 +16,33 @@ const group: StyleMainGroup = {
     alignItems: 'center',
   },
   img: { cursor: 'pointer' },
+  button: {
+    position: 'absolute',
+    top: '11vh',
+    display: 'flex',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    width: '100vw',
+    left: 0,
+  },
 }
 
 const Buttons = ({ styles: style }: ButtonsHeaderProps) => {
   const [resize, setResize] = useState<CSSProperties>({})
 
+  const handleChangeScreenWidth = useCallback(() => {
+    if (window.innerWidth <= 600) setResize({ margin: 0 })
+    else setResize({})
+  }, [])
+
   useEffect(() => setResize((window.innerWidth <= 600 && { margin: 0 }) || {}), [])
+
+  useEffect(() => {
+    window.addEventListener('resize', handleChangeScreenWidth)
+    return () => {
+      window.removeEventListener('resize', handleChangeScreenWidth)
+    }
+  }, [handleChangeScreenWidth])
 
   return (
     <div style={style ?? {}}>
@@ -43,18 +64,22 @@ const Header = () => {
   const [mouseInImage, setMouseInImage] = useState(false)
   const [buttonsContainerStyle, setButtonsContainerStyle] = useState<CSSProperties>({})
 
-  useEffect(() => {
-    if (window.innerWidth <= 600)
-      setButtonsContainerStyle({
-        position: 'absolute',
-        top: '11vh',
-        display: 'flex',
-        justifyContent: 'space-around',
-        alignItems: 'center',
-        width: '100vw',
-        left: 0,
-      })
+  useEffect(
+    () => setButtonsContainerStyle((window.innerWidth <= 600 && { ...group.button }) || {}),
+    [],
+  )
+
+  const handleChangeScreenWidth = useCallback(() => {
+    if (window.innerWidth <= 600) setButtonsContainerStyle({ ...group.button })
+    else setButtonsContainerStyle({})
   }, [])
+
+  useEffect(() => {
+    window.addEventListener('resize', handleChangeScreenWidth)
+    return () => {
+      window.removeEventListener('resize', handleChangeScreenWidth)
+    }
+  }, [handleChangeScreenWidth])
 
   return (
     <header className={styles.header}>

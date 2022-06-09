@@ -1,9 +1,18 @@
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 
 const Footer = () => {
   const [inMobile, setInMobile] = useState(false)
 
-  useEffect(() => setInMobile(window.innerWidth < 600), [])
+  const handleChangeScreenWidth = useCallback(() => setInMobile(window.innerWidth <= 600), [])
+
+  useEffect(() => setInMobile(window.innerWidth <= 600), [])
+
+  useEffect(() => {
+    window.addEventListener('resize', handleChangeScreenWidth)
+    return () => {
+      window.removeEventListener('resize', handleChangeScreenWidth)
+    }
+  }, [handleChangeScreenWidth])
 
   return (
     <footer>
