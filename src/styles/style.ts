@@ -11,8 +11,8 @@ const main: CSSProperties = {
 
 const button: CSSProperties = {
   background: colors().blue,
-  paddingTop: 15,
-  paddingBottom: 15,
+  paddingTop: 9,
+  paddingBottom: 9,
   paddingLeft: 60,
   paddingRight: 60,
   border: 0,

@@ -6,13 +6,11 @@ import Input from '../components/Input'
 import css from '../styles/style'
 import colors from '../utils/colors'
 
-const SignIn = () => {
+const ForgotPassword = () => {
   const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
   const [formStyle, setFormStyle] = useState<CSSProperties>({})
-  const [titleStyle, setTitleStyle] = useState<CSSProperties>({})
   const [signUpStyle, setSignUpStyle] = useState<CSSProperties>({})
-  const [forgotStyle, setForgotStyle] = useState<CSSProperties>({})
+  const [titleStyle, setTitleStyle] = useState<CSSProperties>({})
 
   const handleChangeScreenWidth = useCallback(() => {
     setFormStyle((window.innerWidth <= 750 && { width: '70vw' }) || { width: '40vw' })
@@ -33,24 +31,12 @@ const SignIn = () => {
       <Header />
       <main style={css().main}>
         <h1 style={{ textAlign: 'center', marginBottom: 25, ...titleStyle }}>
-          Welcome back to Sambl
+          We will send you a recovery email
         </h1>
         <form style={{ ...formStyle, textAlign: 'center' }}>
-          <Input change={setEmail} value={email} placeholder="Email" type="email" />
-          <Input change={setPassword} value={password} placeholder="Password" type="password" />
-          <Button text="Sign in" style={{ ...css().button, marginTop: 25 }} />
+          <Input placeholder="Email" value={email} change={setEmail} type="email" />
+          <Button text="Send" />
         </form>
-        <div>
-          <p style={{ fontSize: 14, marginTop: 25 }}>
-            <span
-              style={{ textDecoration: 'underline', transition: '0.9s ease', ...forgotStyle }}
-              onMouseEnter={() => setForgotStyle({ color: colors().white })}
-              onMouseLeave={() => setForgotStyle({})}
-            >
-              <Link href="/forgotpassword">Forgot password?</Link>
-            </span>
-          </p>
-        </div>
       </main>
       <footer style={css().footer}>
         <div>
@@ -70,4 +56,4 @@ const SignIn = () => {
   )
 }
 
-export default SignIn
+export default ForgotPassword
