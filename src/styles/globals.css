@@ -36,6 +36,12 @@ h3 {
   color: var(--white);
 }
 
+select {
+  border: none;
+  outline: none;
+  scroll-behavior: smooth;
+}
+
 input {
   transition: 0.5s ease;
   margin: 10px 0;

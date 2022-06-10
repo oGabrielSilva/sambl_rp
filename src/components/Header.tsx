@@ -53,9 +53,9 @@ const Buttons = ({ styles: style }: ButtonsHeaderProps) => {
 
   return (
     <div style={{ ...(style ?? {}), ...buttonsContainerStyle }}>
-      <Link href="/">
+      <Link href="/contact">
         <a className={styles.link} style={resize}>
-          Lorem ipsun
+          Contact
         </a>
       </Link>
       <Link href="/signup">

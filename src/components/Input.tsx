@@ -1,15 +1,6 @@
-import { CSSProperties } from 'react'
-import { InputProps } from '../types'
-import colors from '../utils/colors'
+import css from '../styles/style'
 
-const styles: CSSProperties = {
-  background: colors().dark,
-  color: colors().text,
-  border: `1px solid ${colors().border}`,
-  padding: 10,
-  minWidth: '100%',
-  fontSize: 15,
-}
+import { InputProps } from '../types'
 
 const Input = ({ change, type, placeholder, value, style }: InputProps) => {
   return (
@@ -19,7 +10,7 @@ const Input = ({ change, type, placeholder, value, style }: InputProps) => {
         placeholder={placeholder}
         value={value}
         onChange={({ target }) => change(target.value)}
-        style={style ?? styles}
+        style={style ?? css().input}
       />
     </div>
   )

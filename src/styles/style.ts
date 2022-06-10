@@ -23,6 +23,15 @@ const button: CSSProperties = {
   transition: '0.5s ease',
 }
 
+const input: CSSProperties = {
+  background: colors().dark,
+  color: colors().text,
+  border: `1px solid ${colors().border}`,
+  padding: 10,
+  minWidth: '100%',
+  fontSize: 15,
+}
+
 const footer: CSSProperties = {
   textAlign: 'center',
   display: 'flex',
@@ -30,6 +39,6 @@ const footer: CSSProperties = {
   fontSize: 14,
 }
 
-const css = () => ({ main, button, footer })
+const css = () => ({ main, button, footer, input })
 
 export default css

@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { CSSProperties, useCallback, useEffect, useState } from 'react'
 import Button from '../components/Button'
+import Footer from '../components/Footer'
 import Header from '../components/Header'
 import Input from '../components/Input'
 import css from '../styles/style'
@@ -28,7 +29,7 @@ const ForgotPassword = () => {
 
   return (
     <div>
-      <Header />
+      <Header buttons />
       <main style={css().main}>
         <h1 style={{ textAlign: 'center', marginBottom: 25, ...titleStyle }}>
           We will send you a recovery email
@@ -38,20 +39,7 @@ const ForgotPassword = () => {
           <Button text="Send" />
         </form>
       </main>
-      <footer style={css().footer}>
-        <div>
-          <p style={{ borderTop: `1px solid ${colors().text}`, padding: '15px 10px 0 10px' }}>
-            Don&#39;t have an account yet?{' '}
-            <span
-              style={{ textDecoration: 'underline', transition: '0.9s ease', ...signUpStyle }}
-              onMouseEnter={() => setSignUpStyle({ color: colors().white })}
-              onMouseLeave={() => setSignUpStyle({})}
-            >
-              <Link href="/signup">Sign up.</Link>
-            </span>
-          </p>
-        </div>
-      </footer>
+      <Footer />
     </div>
   )
 }
