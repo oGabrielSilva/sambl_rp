@@ -1,4 +1,4 @@
-import type { CSSProperties } from 'react'
+import type { CSSProperties, HTMLInputTypeAttribute } from 'react'
 
 export interface StyleMainGroup {
   logo: CSSProperties
@@ -39,7 +39,7 @@ export interface HeaderProps {
 export interface InputProps {
   value: string
   change(value: string): void
-  type: string
+  type: HTMLInputTypeAttribute
   placeholder: string
   style?: CSSProperties
 }

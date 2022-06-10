@@ -1,8 +1,9 @@
 import Link from 'next/link'
 import { CSSProperties, useCallback, useEffect, useState } from 'react'
-import Button, { styles } from '../components/Button'
+import Button from '../components/Button'
 import Header from '../components/Header'
 import Input from '../components/Input'
+import css from '../styles/style'
 import colors from '../utils/colors'
 
 const SignUp = () => {
@@ -14,16 +15,11 @@ const SignUp = () => {
   const [titleStyle, setTitleStyle] = useState<CSSProperties>({ fontSize: 40 })
   const [signInStyle, setSignInStyle] = useState<CSSProperties>({})
 
-  const handleChangeScreenWidth = useCallback(() => {
-    setFormStyle((window.innerWidth <= 750 && { width: '70vw' }) || { width: '40vw' })
-    setTitleStyle((window.innerWidth <= 600 && { fontSize: 30 }) || { fontSize: 40 })
-  }, [])
-
   const handleSubmit = useCallback(() => {
     return 'oi' // falta criar a função
   }, [])
 
-  useEffect(() => {
+  const handleChangeScreenWidth = useCallback(() => {
     setFormStyle((window.innerWidth <= 750 && { width: '70vw' }) || { width: '40vw' })
     setTitleStyle((window.innerWidth <= 600 && { fontSize: 30 }) || { fontSize: 40 })
   }, [])
@@ -35,20 +31,14 @@ const SignUp = () => {
     }
   }, [handleChangeScreenWidth])
 
+  useEffect(() => handleChangeScreenWidth(), [handleChangeScreenWidth])
+
   return (
     <>
       <div>
         <section>
           <Header />
-          <main
-            style={{
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'center',
-              alignItems: 'center',
-              minHeight: '90vh',
-            }}
-          >
+          <main style={css().main}>
             <h1 style={{ textAlign: 'center', marginBottom: 25, ...titleStyle }}>
               We are happy to see you on this screen. :D
             </h1>
@@ -60,16 +50,14 @@ const SignUp = () => {
               <Button
                 text="Submit"
                 path=""
-                style={{ ...styles, marginTop: 25 }}
+                style={{ ...css().button, marginTop: 25 }}
                 func={handleSubmit}
               />
             </form>
           </main>
         </section>
       </div>
-      <footer
-        style={{ textAlign: 'center', display: 'flex', justifyContent: 'center', fontSize: 14 }}
-      >
+      <footer style={css().footer}>
         <div>
           <p style={{ borderTop: `1px solid ${colors().text}`, padding: '15px 10px 0 10px' }}>
             Already have an account?{' '}
