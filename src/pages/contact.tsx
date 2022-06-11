@@ -21,22 +21,26 @@ const Contact = () => {
   const [text, setText] = useState('')
   const errors: string[] = []
 
+  const verifyFields = () => {
+    if (!emailValidation(email)) errors.push('email provided is invalid')
+    if (!nameValidation(name)) errors.push('name provided is invalid')
+    if (!nameValidation(subject)) errors.push('subject provided is invalid')
+    if (!textareaValidation(message)) errors.push('text field provided is invalid')
+  }
+
   const handleSubmit = (): void => {
     setLoading(true)
     setAlert(true)
     setTitle('Oops... something wrong was found')
     errors.slice(0, errors.length)
-    if (!emailValidation(email)) errors.push('email provided is invalid')
-    if (!nameValidation(name)) errors.push('name provided is invalid')
-    if (!nameValidation(subject)) errors.push('subject provided is invalid')
-    if (!textareaValidation(message)) errors.push('text field provided is invalid')
+    verifyFields()
     if (errors.length) {
       setText(`Errors: ${errors.join('; ')}.`)
       setLoading(false)
-    } else {
-      setText('')
-      setTitle('Please wait a moment')
+      return
     }
+    setText('')
+    setTitle('Please wait a moment')
   }
 
   const handleChangeScreenWidth = useCallback(() => {
