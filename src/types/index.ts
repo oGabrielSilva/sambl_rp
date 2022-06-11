@@ -8,8 +8,10 @@ export interface StyleMainGroup {
 
 export interface ButtonProps {
   text: string
+  clicked: boolean
   style?: CSSProperties
   path?: string
+  setClicked(value?: boolean): void
   func?(): void
 }
 
@@ -42,4 +44,13 @@ export interface InputProps {
   type: HTMLInputTypeAttribute
   placeholder: string
   style?: CSSProperties
+}
+
+export interface AlertProps {
+  title: string
+  text: string
+  confirm?: string
+  close(): void
+  loading?: boolean
+  noButtons?: boolean
 }

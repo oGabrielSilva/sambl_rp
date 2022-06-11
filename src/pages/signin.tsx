@@ -1,6 +1,5 @@
 import Link from 'next/link'
 import { CSSProperties, useCallback, useEffect, useState } from 'react'
-import Button from '../components/Button'
 import Header from '../components/Header'
 import Input from '../components/Input'
 import css from '../styles/style'
@@ -9,6 +8,7 @@ import colors from '../utils/colors'
 const SignIn = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+
   const [formStyle, setFormStyle] = useState<CSSProperties>({})
   const [titleStyle, setTitleStyle] = useState<CSSProperties>({})
   const [signUpStyle, setSignUpStyle] = useState<CSSProperties>({})
@@ -38,7 +38,9 @@ const SignIn = () => {
         <form style={{ ...formStyle, textAlign: 'center' }}>
           <Input change={setEmail} value={email} placeholder="Email" type="email" />
           <Input change={setPassword} value={password} placeholder="Password" type="password" />
-          <Button text="Sign in" style={{ ...css().button, marginTop: 25 }} />
+          <button type="submit" style={{ ...css().button, marginTop: 25 }}>
+            Sign in
+          </button>
         </form>
         <div>
           <p style={{ fontSize: 14, marginTop: 25 }}>

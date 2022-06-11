@@ -1,6 +1,7 @@
+import Link from 'next/link'
 import { CSSProperties, useCallback, useEffect, useState } from 'react'
 import styles from '../styles/home.module.css'
-import Button from './Button'
+import css from '../styles/style'
 
 const Main = () => {
   const [textStyle, setTextStyle] = useState<CSSProperties>({})
@@ -44,7 +45,11 @@ const Main = () => {
         </p>
       </section>
       <section>
-        <Button path="/signin" text="Get Started" />
+        <Link href="/signin">
+          <button style={css().button} type="button">
+            <span>Get started</span>
+          </button>
+        </Link>
       </section>
     </main>
   )

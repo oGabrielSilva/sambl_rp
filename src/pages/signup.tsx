@@ -1,6 +1,5 @@
 import Link from 'next/link'
 import { CSSProperties, useCallback, useEffect, useState } from 'react'
-import Button from '../components/Button'
 import Header from '../components/Header'
 import Input from '../components/Input'
 import css from '../styles/style'
@@ -47,12 +46,13 @@ const SignUp = () => {
               <Input type="text" placeholder="Username" value={username} change={setUsername} />
               <Input type="email" placeholder="Email" value={email} change={setEmail} />
               <Input type="password" placeholder="Password" value={password} change={setPassword} />
-              <Button
-                text="Submit"
-                path=""
+              <button
+                type="submit"
                 style={{ ...css().button, marginTop: 25 }}
-                func={handleSubmit}
-              />
+                onClick={handleSubmit}
+              >
+                Sign up
+              </button>
             </form>
           </main>
         </section>

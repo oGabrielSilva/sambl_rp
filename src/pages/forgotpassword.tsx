@@ -1,16 +1,12 @@
-import Link from 'next/link'
 import { CSSProperties, useCallback, useEffect, useState } from 'react'
-import Button from '../components/Button'
 import Footer from '../components/Footer'
 import Header from '../components/Header'
 import Input from '../components/Input'
 import css from '../styles/style'
-import colors from '../utils/colors'
 
 const ForgotPassword = () => {
   const [email, setEmail] = useState('')
   const [formStyle, setFormStyle] = useState<CSSProperties>({})
-  const [signUpStyle, setSignUpStyle] = useState<CSSProperties>({})
   const [titleStyle, setTitleStyle] = useState<CSSProperties>({})
 
   const handleChangeScreenWidth = useCallback(() => {
@@ -36,7 +32,9 @@ const ForgotPassword = () => {
         </h1>
         <form style={{ ...formStyle, textAlign: 'center' }}>
           <Input placeholder="Email" value={email} change={setEmail} type="email" />
-          <Button text="Send" />
+          <button type="submit" style={css().button}>
+            Send
+          </button>
         </form>
       </main>
       <Footer />
