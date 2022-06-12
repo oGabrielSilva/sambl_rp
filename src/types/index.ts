@@ -48,7 +48,7 @@ export interface InputProps {
 
 export interface AlertProps {
   title: string
-  text: string
+  children: JSX.Element
   confirm?: string
   close(): void
   loading?: boolean

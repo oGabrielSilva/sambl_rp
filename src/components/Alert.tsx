@@ -3,7 +3,7 @@ import { AlertProps } from '../types'
 import styles from '../styles/indicator.module.css'
 import css from '../styles/style'
 
-const Alert = ({ title, text, loading, confirm, close, noButtons }: AlertProps) => {
+const Alert = ({ title, children, loading, confirm, close, noButtons }: AlertProps) => {
   const [titleStyle, setTitleStyle] = useState<CSSProperties>({})
   const [screenSize, setScreenSize] = useState<CSSProperties>({})
 
@@ -28,7 +28,7 @@ const Alert = ({ title, text, loading, confirm, close, noButtons }: AlertProps) 
           <h1 style={{ ...titleStyle }}>{title}</h1>
         </div>
         <div style={{ margin: 10 }}>
-          <p style={{ fontSize: 15 }}>{text}</p>
+          <p style={{ fontSize: 15 }}>{children}</p>
         </div>
         {loading && <div style={{ margin: '10px auto' }} className={styles.indicator} />}
         <div>

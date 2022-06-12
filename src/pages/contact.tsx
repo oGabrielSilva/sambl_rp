@@ -18,28 +18,24 @@ const Contact = () => {
   const [alert, setAlert] = useState(false)
   const [loading, setLoading] = useState(false)
   const [title, setTitle] = useState('Wait a minute')
-  const [text, setText] = useState('')
-  const errors: string[] = []
+  const [errors, setErrors] = useState<string[]>([])
 
-  const verifyFields = () => {
-    if (!emailValidation(email)) errors.push('email provided is invalid')
-    if (!nameValidation(name)) errors.push('name provided is invalid')
-    if (!nameValidation(subject)) errors.push('subject provided is invalid')
-    if (!textareaValidation(message)) errors.push('text field provided is invalid')
+  const mistakeInTheFields = () => {
+    const err = []
+    if (!emailValidation(email)) err.push('Email provided is invalid')
+    if (!nameValidation(name)) err.push('Name provided is invalid')
+    if (!nameValidation(subject)) err.push('Subject provided is invalid')
+    if (!textareaValidation(message)) err.push('Text field provided is invalid')
+    if (err.length) setLoading(false)
+    setErrors(err)
+    return !!err.length
   }
 
   const handleSubmit = (): void => {
-    setLoading(true)
     setAlert(true)
     setTitle('Oops... something wrong was found')
-    errors.slice(0, errors.length)
-    verifyFields()
-    if (errors.length) {
-      setText(`Errors: ${errors.join('; ')}.`)
-      setLoading(false)
-      return
-    }
-    setText('')
+    if (mistakeInTheFields()) return
+    setLoading(true)
     setTitle('Please wait a moment')
   }
 
@@ -98,8 +94,15 @@ const Contact = () => {
           noButtons={loading}
           close={() => setAlert((v) => !v)}
           title={title}
-          text={text}
-        />
+        >
+          <div>
+            {errors.map((err) => (
+              <div key={err}>
+                <span>{err}</span>
+              </div>
+            ))}
+          </div>
+        </Alert>
       )}
       <Footer />
     </div>
